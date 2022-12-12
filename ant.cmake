@@ -37,15 +37,16 @@ endmacro()
 foreach(i RANGE 1 ${NSTEPS}-1)
   # print the current ant position and heading
   set(CURRENT_POS ${ANT_X},${ANT_Y})
-  message("ant position: (${CURRENT_POS}) facing ${ANT_HEADING}")
 
   # change the square color and rotate
   list(FIND BLACK_SQUARES ${CURRENT_POS} LIST_INDEX)
   if(LIST_INDEX EQUAL -1)
+    message("(${CURRENT_POS}) facing ${ANT_HEADING}; white square")
     # location not found therefore the current square is white
     list(APPEND BLACK_SQUARES ${CURRENT_POS})
     rotate_right()
   else()
+    message("(${CURRENT_POS}) facing ${ANT_HEADING}; black square")
     # the current square is black
     list(REMOVE_ITEM BLACK_SQUARES ${CURRENT_POS})
     rotate_left()
